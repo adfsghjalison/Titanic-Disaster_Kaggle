@@ -10,8 +10,8 @@ Download [all.zip](https://www.kaggle.com/c/3136/download-all) and put files in 
 ## Usage
 
 ### Hyperparameters in flags.py
-`batch_size` : batch size / one training step
-'units' : numbers of neuron of layers
+`batch_size` : batch size / one training step 
+`units` : numbers of neuron of layers 
 
 ### Processing data
 ```
@@ -32,14 +32,14 @@ the output file would be data/prediction.csv
 ## Files
 
 ### Folders
-`data/` : all data ( {}.csv / train / test )
-`model/` : store models
+`data/` : all data ( {}.csv / train / test ) 
+`model/` : store models 
 
 ### Files
-`process.py` : processing training / testing data
-`flags.py` : all setting
-`main.py` : main function
-`utils.py` : get date batch
-`model.py` : model structure
+`process.py` : processing training / testing data 
+`flags.py` : all setting 
+`main.py` : main function 
+`utils.py` : get date batch 
+`model.py` : model structure 
 
 
