@@ -1,13 +1,15 @@
+from flags import FLAGS
 import numpy as np
 import csv
 import os
 
 class utils():
     def __init__(self, args):
-        self.batch_size = args.batch_size
-        self.train_data = os.path.join(args.data_dir, 'train_s')
-        self.test_data = os.path.join(args.data_dir, 'test')
-        self.val_data = os.path.join(args.data_dir, 'val')
+        self.batch_size = FLAGS.batch_size
+        self.data_dir = FLAGS.data_dir
+        self.train_data = os.path.join(self.data_dir, 'train')
+        self.test_data = os.path.join(self.data_dir, 'test')
+        self.val_data = os.path.join(self.data_dir, 'val')
         self.xv_size = self.get_xv_size()
 
     def get_xv_size(self):
@@ -47,7 +49,7 @@ class utils():
         for v in cf:
             x.append(v[2:])
             y.append([v[1]])
-            id.append(v[0])
+            id.append(int(float(v[0])))
             cnt += 1
             if cnt >= self.batch_size:
                 x = np.array(x)
@@ -61,4 +63,10 @@ class utils():
             x = np.array(x)
             y = np.array(y)
             yield x, y, id
+
+def write_test(id, pre):
+    cf = csv.writer(open(os.path.join(FLAGS.data_dir, 'prediction.csv'), 'w'))
+    cf.writerow(['PassengerID', 'Survived'])
+    for i, p in zip(id, pre):
+      cf.writerow([i, p])
 

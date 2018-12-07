@@ -1,5 +1,5 @@
 import tensorflow as tf
-from utils import utils
+from utils import utils, write_test
 import os, csv
 
 class DNN():
@@ -16,7 +16,7 @@ class DNN():
 
         self.utils = utils(args)
         self.xv_size = self.utils.xv_size
-        self.dp = 0.5
+        self.dp = args.dp
 
         self.sess = tf.Session()
         self.build()
@@ -104,14 +104,17 @@ class DNN():
             self.saver.restore(self.sess, ckpt.model_checkpoint_path)
             print("load model from {} ...".format(ckpt.model_checkpoint_path))
 
-        cf = csv.writer(open(os.path.join(self.data_dir, 'prediction.csv'), 'w'))
-        cf.writerow(['PassengerID', 'Survived'])
+        ids = []
+        pre = []
 
         for x, _, id in self.utils.get_test_batch():
             feed_dict = {self.x : x}
             pred = self.sess.run([self.pred], feed_dict)
             for i, p in zip(id, pred[0]):
-                cf.writerow([i, int(p[0])])
+                ids.append(i)
+                pre.append(int(p[0]))
+
+        write_test(ids, pre)
 
     def val(self):
         if self.load != '':
