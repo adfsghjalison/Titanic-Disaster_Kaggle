@@ -19,11 +19,19 @@ python process.py
 ```
 
 ### Train
+for DNN:
 ```
 python main.py --mode train
 ```
 
+for SVC
+```
+python ml.py
+```
+this will output directly data/prediction.csv.  
+
 ### Test
+for DNN output:
 ```
 python main.py --mode test [--load (step)]
 ```
