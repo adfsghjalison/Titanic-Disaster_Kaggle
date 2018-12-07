@@ -19,12 +19,12 @@ python process.py
 ```
 
 ### Train
-for DNN:
+for DNN (76%):
 ```
 python main.py --mode train
 ```
 
-for SVC
+for SVC (78%):
 ```
 python ml.py
 ```
