@@ -11,6 +11,7 @@ Download [all.zip](https://www.kaggle.com/c/3136/download-all) and put files in 
 
 ### Hyperparameters in flags.py
 `batch_size` : batch size / one training step  
+`dp` : keep rate  
 `units` : numbers of neuron of layers  
 
 ### Processing data
